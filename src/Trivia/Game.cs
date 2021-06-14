@@ -64,18 +64,13 @@ namespace Trivia
         public bool Add(string playerName)
         {
             _players.Add(playerName);
-            _places[HowManyPlayers()] = 0;
-            _purses[HowManyPlayers()] = 0;
-            _inPenaltyBox[HowManyPlayers()] = false;
+            _places[_players.Count] = 0;
+            _purses[_players.Count] = 0;
+            _inPenaltyBox[_players.Count] = false;
 
             Print(playerName + " was added");
             Print("They are player number " + _players.Count);
             return true;
-        }
-
-        public int HowManyPlayers()
-        {
-            return _players.Count;
         }
 
         public void Roll(int roll)
@@ -98,41 +93,55 @@ namespace Trivia
                 }
             }
 
-            Move(_currentPlayer,roll);
+            int currentPosition = PositionOf(_currentPlayer);
 
-            int currentPosition = CurrentPosition(_currentPlayer);
-            Category currentCategory = CurrentCategory(_currentPlayer);
+            MoveTo(_currentPlayer, NewPosition(currentPosition, roll));
+
+            currentPosition = PositionOf(_currentPlayer);
+
+            Category currentCategory = CategoryOf(currentPosition);
 
             Print(playerName + "'s new location is " + currentPosition);
             Print("The category is " + currentCategory);
 
-            Print( GetQuestion(currentCategory));
+            Print( NextQuestionAbout(currentCategory));
         }
-
-        private void Move(int currentPlayer, int roll)
+        private int NewPosition(int currentPosition, int roll)
         {
-            _places[currentPlayer] = (CurrentPosition(currentPlayer) + roll) % NUMBER_OF_CELLS;
+            return (currentPosition + roll) % NUMBER_OF_CELLS;
+        }
+        private string NextQuestionAbout(Category category)
+        {
+            return questionsByCategory[category].Dequeue();
+        }
+        private Category CategoryOf(int position)
+        {
+            return categoriesByPosition[position];
         }
 
+        private void MoveTo(int currentPlayer, int position)
+        {
+            _places[currentPlayer] = position;
+        }
+        private int PositionOf(int currentPlayer)
+        {
+            return _places[currentPlayer];
+        }
         private void Print(string message)
         {
             stdOutput.WriteLine(message);
         }
-
-        private string GetQuestion(Category currentCategory)
+        private int NextPlayer()
         {
-            return questionsByCategory[currentCategory].Dequeue();
+            return (_currentPlayer + 1) % _players.Count;
         }
 
-        private Category CurrentCategory(int currentPlayer)
+        private bool HasWon(int currentPlayer)
         {
-            return categoriesByPosition[CurrentPosition(currentPlayer)];
+            return (_purses[currentPlayer] == 6);
         }
 
-        private int CurrentPosition(int currentPlayer)
-        {
-            return _places[currentPlayer];
-        }
+
 
         public bool WasCorrectlyAnswered()
         {
@@ -149,17 +158,14 @@ namespace Trivia
                   + _purses[_currentPlayer]
                   + " Gold Coins.");
 
-            var doesGameContinues = !DidPlayerWin();
+            var doesGameContinues = !HasWon(_currentPlayer);
             _currentPlayer = NextPlayer();
 
             return doesGameContinues;
 
         }
 
-        private int NextPlayer()
-        {
-            return  (_currentPlayer + 1) % _players.Count;
-        }
+       
 
         public bool WrongAnswer()
         {
@@ -167,19 +173,12 @@ namespace Trivia
             Print(_players[_currentPlayer] + " was sent to the penalty box");
             _inPenaltyBox[_currentPlayer] = true;
 
-            _currentPlayer++;
-            if (_currentPlayer == _players.Count)
-            {
-                _currentPlayer = 0;
-            }
+            _currentPlayer = NextPlayer();
             return true;
         }
 
 
-        private bool DidPlayerWin()
-        {
-            return (_purses[_currentPlayer] == 6);
-        }
+        
     }
 
 }
