@@ -80,7 +80,8 @@ namespace Trivia
 
         public void Roll(int roll)
         {
-            Print(_players[_currentPlayer] + " is the current player");
+            string playerName = _players[_currentPlayer];
+            Print(playerName + " is the current player");
             Print("They have rolled a " + roll);
 
             if (_inPenaltyBox[_currentPlayer])
@@ -88,27 +89,29 @@ namespace Trivia
                 if (roll % 2 != 0)
                 {
                     _inPenaltyBox[_currentPlayer] = false;
-                    Print(_players[_currentPlayer] + " is getting out of the penalty box");
+                    Print(playerName + " is getting out of the penalty box");
                 }
                 else
                 {
-                    Print(_players[_currentPlayer] + " is not getting out of the penalty box");
+                    Print(playerName + " is not getting out of the penalty box");
                     return;
                 }
             }
 
-            Move(roll);
+            Move(_currentPlayer,roll);
 
-            Print(_players[_currentPlayer]
-                  + "'s new location is "
-                  + CurrentPosition());
-            Print("The category is " + CurrentCategory());
-            AskQuestion();
+            int currentPosition = CurrentPosition(_currentPlayer);
+            Category currentCategory = CurrentCategory(_currentPlayer);
+
+            Print(playerName + "'s new location is " + currentPosition);
+            Print("The category is " + currentCategory);
+
+            AskQuestion(currentCategory);
         }
 
-        private void Move(int roll)
+        private void Move(int currentPlayer, int roll)
         {
-            _places[_currentPlayer] = (CurrentPosition() + roll) % NUMBER_OF_CELLS;
+            _places[currentPlayer] = (CurrentPosition(currentPlayer) + roll) % NUMBER_OF_CELLS;
         }
 
         private void Print(string message)
@@ -116,19 +119,19 @@ namespace Trivia
             stdOutput.WriteLine(message);
         }
 
-        private void AskQuestion()
+        private void AskQuestion(Category currentCategory)
         {
-            Print(questionsByCategory[CurrentCategory()].Dequeue());
+            Print(questionsByCategory[currentCategory].Dequeue());
         }
 
-        private Category CurrentCategory()
+        private Category CurrentCategory(int currentPlayer)
         {
-            return categoriesByPosition[CurrentPosition()];
+            return categoriesByPosition[CurrentPosition(currentPlayer)];
         }
 
-        private int CurrentPosition()
+        private int CurrentPosition(int currentPlayer)
         {
-            return _places[_currentPlayer];
+            return _places[currentPlayer];
         }
 
         public bool WasCorrectlyAnswered()
