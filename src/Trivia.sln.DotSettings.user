@@ -2,5 +2,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=29140011_002D3af9_002D4899_002Db1cc_002Df52d028da924/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Should_Select_First_Player_When_In_First_Round" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7304DA09-262C-40EE-BC81-2B75746BD20E::net5.0::Tests.PlayerListTests.Should_Select_First_Player_When_In_First_Round&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7304DA09-262C-40EE-BC81-2B75746BD20E::net5.0::Tests.GameTests.TestGame&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

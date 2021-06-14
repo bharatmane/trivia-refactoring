@@ -12,7 +12,7 @@ namespace Trivia
         private readonly TextWriter stdOutput;
         private const int NUMBER_OF_CELLS = 12;
         private static readonly int NB_QUESTIONS = 50;
-        private List<Category> categories = new() { Category.Pop, Category.Science, Category.Sports, Category.Rock };
+        private readonly List<Category> categories = new() { Category.Pop, Category.Science, Category.Sports, Category.Rock };
         
         private readonly Dictionary<int, Category>
             categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
@@ -21,19 +21,29 @@ namespace Trivia
             new Dictionary<Category, Queue<string>>();
 
         private readonly Board board;
-        private readonly PlayerList playerList = new PlayerList();
+        private readonly PlayerList playerList;
         private readonly  QuestionDeck deck;
-        public Game(TextWriter stdOutput)
+        public Game(TextWriter stdOutput, Board board, QuestionDeck deck, PlayerList players)
         {
             this.stdOutput = stdOutput;
 
-            board = new Board(NUMBER_OF_CELLS, categories);
-            deck = new QuestionDeck(NB_QUESTIONS, categories);
+            this.board = board;new Board(NUMBER_OF_CELLS, categories);
+            this.deck = deck;
+            this.playerList = new PlayerList();
+            for (int i = 0; i < players.Count; i++) 
+            {
+                this.Add(players.CurrentPlayer.Name);
+                players.NextPlayer();
+            }
+            
+            
         }
         [Obsolete]
-        public Game() : this(Console.Out)
+        public Game() : this(Console.Out, new Board(NUMBER_OF_CELLS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
+            new QuestionDeck(NB_QUESTIONS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
+            new PlayerList())
         {
-
+         
         }
 
         

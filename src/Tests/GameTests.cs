@@ -15,6 +15,12 @@ namespace Tests
     class GameTests
     {
         private bool _notAWinner;
+        private static readonly int NUMBER_OF_CELLS = 12;
+        private static readonly int NUMBER_OF_QUESTIONS = 50;
+
+        private static readonly List<Category> CATEGORIES = new List<Category>()
+            {Category.Pop, Category.Science, Category.Sports, Category.Rock};
+        private static readonly List<String> PLAYERS = new List<string>(){"Chet", "Pat", "Sue"};
 
         [Test]
         public void TestGame()
@@ -28,11 +34,9 @@ namespace Tests
 
         private string RunAGame(int startingGameId, TextWriter textWriter)
         {
-            var aGame = new Game(textWriter);
-
-            aGame.Add("Chet");
-            aGame.Add("Pat");
-            aGame.Add("Sue");
+            var aGame = new Game(textWriter, new Board(NUMBER_OF_CELLS, CATEGORIES),
+                new QuestionDeck(NUMBER_OF_QUESTIONS, CATEGORIES),
+                new PlayerList(PLAYERS));
 
             var rand = new Random(startingGameId);
 

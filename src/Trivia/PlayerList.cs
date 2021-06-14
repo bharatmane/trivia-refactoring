@@ -8,8 +8,24 @@ namespace Trivia
 {
     public class PlayerList
     {
-        private readonly List<Player> players = new List<Player>();
+        private readonly List<Player> players;
         private int currentPlayerIndex = 0;
+
+        [Obsolete]
+        public PlayerList()
+        {
+            players = new List<Player>();
+        }
+
+        public PlayerList(List<String> names)
+        {
+            players = new List<Player>();
+            foreach (var name in names)
+            {
+                this.Add(new Player(name));
+            }
+        }
+
         public void Add(Player player)
         {
             players.Add(player);
