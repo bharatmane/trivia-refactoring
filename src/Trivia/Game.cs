@@ -9,27 +9,16 @@ namespace Trivia
 {
     public class Game
     {
+        private readonly TextWriter stdOutput;
         private const int NUMBER_OF_CELLS = 12;
         private readonly Category[] CATEGORIES = new[] { Category.Pop, Category.Science, Category.Sports, Category.Rock };
-
         private readonly Dictionary<int, Category>
             categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
-
         private readonly Dictionary<Category, Queue<string>> questionsByCategory =
             new Dictionary<Category, Queue<string>>();
-
-
-        private readonly TextWriter stdOutput;
-        private readonly List<string> _players = new();
-
-        private readonly int[] _places = new int[6];
-        private readonly int[] _purses = new int[6];
-
-        private readonly bool[] _inPenaltyBox = new bool[6];
-
-        private int _currentPlayer;
-        
-
+        private readonly List<Player> players = new List<Player>();
+        private Player currentPlayer = null;
+        private int currentPlayerIndex = 0;
 
         public Game(TextWriter stdOutput)
         {
@@ -39,7 +28,6 @@ namespace Trivia
             {
                 questionsByCategory.Add(category, new Queue<string>());
             }
-
 
             for (var i = 0; i < 50; i++)
             {
@@ -61,47 +49,40 @@ namespace Trivia
         }
 
         
-        public bool Add(string playerName)
+        public void Add(string playerName)
         {
-            _players.Add(playerName);
-            _places[_players.Count] = 0;
-            _purses[_players.Count] = 0;
-            _inPenaltyBox[_players.Count] = false;
+            players.Add(new Player(playerName));
 
             Print(playerName + " was added");
-            Print("They are player number " + _players.Count);
-            return true;
+            Print("They are player number " + players.Count);
+            currentPlayer = players[currentPlayerIndex];
         }
 
         public void Roll(int roll)
         {
-            string playerName = _players[_currentPlayer];
-            Print(playerName + " is the current player");
+            
+            Print(currentPlayer + " is the current player");
             Print("They have rolled a " + roll);
 
-            if (_inPenaltyBox[_currentPlayer])
+            if (currentPlayer.IsInPenaltyBox())
             {
                 if (roll % 2 != 0)
                 {
-                    _inPenaltyBox[_currentPlayer] = false;
-                    Print(playerName + " is getting out of the penalty box");
+                    currentPlayer.ExitsPenaltyBox();
+                    Print(currentPlayer + " is getting out of the penalty box");
                 }
                 else
                 {
-                    Print(playerName + " is not getting out of the penalty box");
+                    Print(currentPlayer + " is not getting out of the penalty box");
                     return;
                 }
             }
 
-            int currentPosition = PositionOf(_currentPlayer);
+            currentPlayer.MoveTo(NewPosition(currentPlayer.Position, roll));
 
-            MoveTo(_currentPlayer, NewPosition(currentPosition, roll));
+            Category currentCategory = CategoryOf(currentPlayer.Position);
 
-            currentPosition = PositionOf(_currentPlayer);
-
-            Category currentCategory = CategoryOf(currentPosition);
-
-            Print(playerName + "'s new location is " + currentPosition);
+            Print(currentPlayer + "'s new location is " + currentPlayer.Position);
             Print("The category is " + currentCategory);
 
             Print( NextQuestionAbout(currentCategory));
@@ -118,66 +99,42 @@ namespace Trivia
         {
             return categoriesByPosition[position];
         }
-
-        private void MoveTo(int currentPlayer, int position)
-        {
-            _places[currentPlayer] = position;
-        }
-        private int PositionOf(int currentPlayer)
-        {
-            return _places[currentPlayer];
-        }
         private void Print(string message)
         {
             stdOutput.WriteLine(message);
         }
-        private int NextPlayer()
+        private Player NextPlayer()
         {
-            return (_currentPlayer + 1) % _players.Count;
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
+            return players[currentPlayerIndex];
         }
-
-        private bool HasWon(int currentPlayer)
-        {
-            return (_purses[currentPlayer] == 6);
-        }
-
-
-
         public bool WasCorrectlyAnswered()
         {
-            if (_inPenaltyBox[_currentPlayer])
+            if (currentPlayer.IsInPenaltyBox())
             {
-                _currentPlayer = NextPlayer();
+                currentPlayer = NextPlayer();
                 return true;
             }
 
             Print("Answer was correct!!!!");
-            _purses[_currentPlayer]++;
-            Print(_players[_currentPlayer]
-                  + " now has "
-                  + _purses[_currentPlayer]
-                  + " Gold Coins.");
+            currentPlayer.Reward(1);
+            Print(currentPlayer + " now has " + currentPlayer.GoldCoins + " Gold Coins.");
 
-            var doesGameContinues = !HasWon(_currentPlayer);
-            _currentPlayer = NextPlayer();
+            var doesGameContinues = !currentPlayer.HasWon();
+            currentPlayer = NextPlayer();
 
             return doesGameContinues;
-
         }
-
-       
 
         public bool WrongAnswer()
         {
             Print("Question was incorrectly answered");
-            Print(_players[_currentPlayer] + " was sent to the penalty box");
-            _inPenaltyBox[_currentPlayer] = true;
+            Print(currentPlayer + " was sent to the penalty box");
+            currentPlayer.EntersPenaltyBox();
 
-            _currentPlayer = NextPlayer();
+            currentPlayer = NextPlayer();
             return true;
         }
-
-
         
     }
 

@@ -22,7 +22,7 @@ namespace Trivia
             get { return position; }
         }
 
-        void MoveTo(int newPosition)
+        public void MoveTo(int newPosition)
         {
             this.position = newPosition;
         }
