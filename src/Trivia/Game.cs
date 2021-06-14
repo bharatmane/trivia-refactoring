@@ -8,6 +8,7 @@ namespace Trivia
 {
     public class Game
     {
+        private const int NUMBER_OF_CELLS = 12;
         private readonly TextWriter stdOutput;
         private readonly List<string> _players = new();
 
@@ -82,9 +83,9 @@ namespace Trivia
 
                     Print(_players[_currentPlayer] + " is getting out of the penalty box");
                     _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                    if (_places[_currentPlayer] > 11)
+                    if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
                     {
-                        _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                        _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
                     }
 
                     Print(_players[_currentPlayer]
@@ -102,9 +103,9 @@ namespace Trivia
             else
             {
                 _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                if (_places[_currentPlayer] > 11)
+                if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
                 {
-                    _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                    _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
                 }
 
                 Print(_players[_currentPlayer]
