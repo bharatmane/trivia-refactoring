@@ -82,7 +82,10 @@ namespace Trivia
 
                     Print(_players[_currentPlayer] + " is getting out of the penalty box");
                     _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                    if (_places[_currentPlayer] > 11) _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                    if (_places[_currentPlayer] > 11)
+                    {
+                        _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                    }
 
                     Print(_players[_currentPlayer]
                             + "'s new location is "
@@ -99,7 +102,10 @@ namespace Trivia
             else
             {
                 _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                if (_places[_currentPlayer] > 11) _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                if (_places[_currentPlayer] > 11)
+                {
+                    _places[_currentPlayer] = _places[_currentPlayer] - 12;
+                }
 
                 Print(_players[_currentPlayer]
                         + "'s new location is "
@@ -163,14 +169,20 @@ namespace Trivia
 
                     var winner = DidPlayerWin();
                     _currentPlayer++;
-                    if (_currentPlayer == _players.Count) _currentPlayer = 0;
+                    if (_currentPlayer == _players.Count)
+                    {
+                        _currentPlayer = 0;
+                    }
 
                     return winner;
                 }
                 else
                 {
                     _currentPlayer++;
-                    if (_currentPlayer == _players.Count) _currentPlayer = 0;
+                    if (_currentPlayer == _players.Count)
+                    {
+                        _currentPlayer = 0;
+                    }
                     return true;
                 }
             }
@@ -185,7 +197,10 @@ namespace Trivia
 
                 var winner = DidPlayerWin();
                 _currentPlayer++;
-                if (_currentPlayer == _players.Count) _currentPlayer = 0;
+                if (_currentPlayer == _players.Count)
+                {
+                    _currentPlayer = 0;
+                }
 
                 return winner;
             }
@@ -198,7 +213,10 @@ namespace Trivia
             _inPenaltyBox[_currentPlayer] = true;
 
             _currentPlayer++;
-            if (_currentPlayer == _players.Count) _currentPlayer = 0;
+            if (_currentPlayer == _players.Count)
+            {
+                _currentPlayer = 0;
+            }
             return true;
         }
 
