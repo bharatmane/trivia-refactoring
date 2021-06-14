@@ -20,15 +20,15 @@ namespace Tests
         public void TestGame()
         {
             StringBuilder capturedOutput = new StringBuilder();
-            Console.SetOut(new StringWriter(capturedOutput));
+            
             int startingGameId = 345;
 
-            Approvals.Verify(RunAGame(startingGameId, capturedOutput));
+            Approvals.Verify(RunAGame(startingGameId, new StringWriter(capturedOutput)));
         }
 
-        private string RunAGame(int startingGameId, StringBuilder capturedOutput)
+        private string RunAGame(int startingGameId, TextWriter textWriter)
         {
-            var aGame = new Game();
+            var aGame = new Game(textWriter);
 
             aGame.Add("Chet");
             aGame.Add("Pat");
@@ -50,7 +50,7 @@ namespace Tests
                 }
             } while (_notAWinner);
 
-            return capturedOutput.ToString();
+            return textWriter.ToString();
         }
 
         [Test]
@@ -67,11 +67,10 @@ namespace Tests
             for (int i = 0; i < howManyGames; i++)
             {
                 StringBuilder capturedOutput = new StringBuilder();
-                Console.SetOut(new StringWriter(capturedOutput));
-
+                
                 int startingGameId = 456 + i * 17;
 
-                gamesOutput.Add(i, RunAGame(startingGameId, capturedOutput));
+                gamesOutput.Add(i, RunAGame(startingGameId, new StringWriter(capturedOutput)));
             }
 
             return gamesOutput;
