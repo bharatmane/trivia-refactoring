@@ -82,15 +82,11 @@ namespace Trivia
                     _isGettingOutOfPenaltyBox = true;
 
                     Print(_players[_currentPlayer] + " is getting out of the penalty box");
-                    _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                    if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
-                    {
-                        _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
-                    }
+                    Move(roll);
 
                     Print(_players[_currentPlayer]
-                            + "'s new location is "
-                            + CurrentPosition());
+                          + "'s new location is "
+                          + CurrentPosition());
                     Print("The category is " + CurrentCategory());
                     AskQuestion();
                 }
@@ -102,17 +98,22 @@ namespace Trivia
             }
             else
             {
-                _places[_currentPlayer] = _places[_currentPlayer] + roll;
-                if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
-                {
-                    _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
-                }
+                Move(roll);
 
                 Print(_players[_currentPlayer]
                         + "'s new location is "
                         + CurrentPosition());
                 Print("The category is " + CurrentCategory());
                 AskQuestion();
+            }
+        }
+
+        private void Move(int roll)
+        {
+            _places[_currentPlayer] = _places[_currentPlayer] + roll;
+            if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
+            {
+                _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
             }
         }
 
