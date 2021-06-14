@@ -11,6 +11,7 @@ namespace Trivia
     {
         private readonly TextWriter stdOutput;
         private const int NUMBER_OF_CELLS = 12;
+        private static readonly int NB_QUESTIONS = 50;
         private List<Category> categories = new() { Category.Pop, Category.Science, Category.Sports, Category.Rock };
         
         private readonly Dictionary<int, Category>
@@ -21,30 +22,13 @@ namespace Trivia
 
         private readonly Board board;
         private readonly PlayerList playerList = new PlayerList();
-
+        private readonly  QuestionDeck deck;
         public Game(TextWriter stdOutput)
         {
             this.stdOutput = stdOutput;
 
             board = new Board(NUMBER_OF_CELLS, categories);
-
-            foreach (var category in categories)
-            {
-                questionsByCategory.Add(category, new Queue<string>());
-            }
-
-            for (var i = 0; i < 50; i++)
-            {
-                foreach (var category in categories)
-                {
-                    questionsByCategory[category].Enqueue(category.ToString() + " Question " + i);
-                }
-            }
-
-            for (int i = 0; i < NUMBER_OF_CELLS; i++)
-            {
-                categoriesByPosition.Add(i, categories[i % categories.Count]);
-            }
+            deck = new QuestionDeck(NB_QUESTIONS, categories);
         }
         [Obsolete]
         public Game() : this(Console.Out)
@@ -90,7 +74,7 @@ namespace Trivia
             Print(currentPlayer + "'s new location is " + newPosition);
             Print("The category is " + currentCategory);
 
-            Print( NextQuestionAbout(currentCategory));
+            Print( deck.NextQuestionAbout(currentCategory));
         }
         private int NewPosition(int currentPosition, int roll)
         {
@@ -112,6 +96,7 @@ namespace Trivia
         public bool WasCorrectlyAnswered()
         {
             Player currentPlayer = playerList.CurrentPlayer;
+
             if (currentPlayer.IsInPenaltyBox())
             {
                 playerList.NextPlayer();
