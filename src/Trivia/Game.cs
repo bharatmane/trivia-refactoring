@@ -10,7 +10,7 @@ namespace Trivia
     public class Game
     {
         private const int NUMBER_OF_CELLS = 12;
-        private readonly Category[] CATEGORIES = new[] {Category.Pop, Category.Science, Category.Sports, Category.Rock};
+        private readonly Category[] CATEGORIES = new[] { Category.Pop, Category.Science, Category.Sports, Category.Rock };
 
         private readonly Dictionary<int, Category>
             categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
@@ -26,7 +26,7 @@ namespace Trivia
         private readonly int[] _purses = new int[6];
 
         private readonly bool[] _inPenaltyBox = new bool[6];
-        
+
         private int _currentPlayer;
         private bool _isGettingOutOfPenaltyBox;
 
@@ -37,7 +37,7 @@ namespace Trivia
 
             foreach (var category in CATEGORIES)
             {
-                questionsByCategory.Add(category,new Queue<string>());
+                questionsByCategory.Add(category, new Queue<string>());
             }
 
 
@@ -55,9 +55,9 @@ namespace Trivia
             }
         }
         [Obsolete]
-        public Game():this(Console.Out)
+        public Game() : this(Console.Out)
         {
-            
+
         }
 
         public string CreateRockQuestion(int index)
@@ -96,33 +96,23 @@ namespace Trivia
             {
                 if (roll % 2 != 0)
                 {
-                    _isGettingOutOfPenaltyBox = true;
-
+                    _inPenaltyBox[_currentPlayer] = false;
                     Print(_players[_currentPlayer] + " is getting out of the penalty box");
-                    Move(roll);
-
-                    Print(_players[_currentPlayer]
-                          + "'s new location is "
-                          + CurrentPosition());
-                    Print("The category is " + CurrentCategory());
-                    AskQuestion();
                 }
                 else
                 {
                     Print(_players[_currentPlayer] + " is not getting out of the penalty box");
-                    _isGettingOutOfPenaltyBox = false;
+                    return;
                 }
             }
-            else
-            {
-                Move(roll);
 
-                Print(_players[_currentPlayer]
-                        + "'s new location is "
-                        + CurrentPosition());
-                Print("The category is " + CurrentCategory());
-                AskQuestion();
-            }
+            Move(roll);
+
+            Print(_players[_currentPlayer]
+                  + "'s new location is "
+                  + CurrentPosition());
+            Print("The category is " + CurrentCategory());
+            AskQuestion();
         }
 
         private void Move(int roll)
@@ -154,46 +144,27 @@ namespace Trivia
         {
             if (_inPenaltyBox[_currentPlayer])
             {
-                if (_isGettingOutOfPenaltyBox)
-                {
-                    Print("Answer was correct!!!!");
-                    _purses[_currentPlayer]++;
-                    Print(_players[_currentPlayer]
-                            + " now has "
-                            + _purses[_currentPlayer]
-                            + " Gold Coins.");
-
-                    var winner = DidPlayerWin();
-                    NextPlayer();
-
-                    return winner;
-                }
-                else
-                {
-                    NextPlayer();
-                    return true;
-                }
+                _currentPlayer = NextPlayer();
+                return true;
             }
-            else
-            {
-                Print("Answer was corrent!!!!");
-                _purses[_currentPlayer]++;
-                Print(_players[_currentPlayer]
-                        + " now has "
-                        + _purses[_currentPlayer]
-                        + " Gold Coins.");
 
-                var winner = DidPlayerWin();
-                
-                NextPlayer();
+            Print("Answer was correct!!!!");
+            _purses[_currentPlayer]++;
+            Print(_players[_currentPlayer]
+                  + " now has "
+                  + _purses[_currentPlayer]
+                  + " Gold Coins.");
 
-                return winner;
-            }
+            var winner = DidPlayerWin();
+            _currentPlayer = NextPlayer();
+
+            return winner;
+
         }
 
-        private void NextPlayer()
+        private int NextPlayer()
         {
-            _currentPlayer = (_currentPlayer + 1) % _players.Count;
+            return  (_currentPlayer + 1) % _players.Count;
         }
 
         public bool WrongAnswer()
