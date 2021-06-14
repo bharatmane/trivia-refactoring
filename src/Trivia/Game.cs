@@ -146,10 +146,10 @@ namespace Trivia
                   + _purses[_currentPlayer]
                   + " Gold Coins.");
 
-            var winner = DidPlayerWin();
+            var doesGameContinues = !DidPlayerWin();
             _currentPlayer = NextPlayer();
 
-            return winner;
+            return doesGameContinues;
 
         }
 
@@ -175,7 +175,7 @@ namespace Trivia
 
         private bool DidPlayerWin()
         {
-            return !(_purses[_currentPlayer] == 6);
+            return (_purses[_currentPlayer] == 6);
         }
     }
 
