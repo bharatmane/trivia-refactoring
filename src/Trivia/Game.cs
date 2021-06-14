@@ -90,7 +90,7 @@ namespace Trivia
 
                     Print(_players[_currentPlayer]
                             + "'s new location is "
-                            + _places[_currentPlayer]);
+                            + CurrentPosition());
                     Print("The category is " + CurrentCategory());
                     AskQuestion();
                 }
@@ -110,7 +110,7 @@ namespace Trivia
 
                 Print(_players[_currentPlayer]
                         + "'s new location is "
-                        + _places[_currentPlayer]);
+                        + CurrentPosition());
                 Print("The category is " + CurrentCategory());
                 AskQuestion();
             }
@@ -143,16 +143,21 @@ namespace Trivia
 
         private Category CurrentCategory()
         {
-            if (_places[_currentPlayer] == 0) return Category.Pop;
-            if (_places[_currentPlayer] == 4) return Category.Pop;
-            if (_places[_currentPlayer] == 8) return Category.Pop;
-            if (_places[_currentPlayer] == 1) return Category.Science;
-            if (_places[_currentPlayer] == 5) return Category.Science;
-            if (_places[_currentPlayer] == 9) return Category.Science;
-            if (_places[_currentPlayer] == 2) return Category.Sports;
-            if (_places[_currentPlayer] == 6) return Category.Sports;
-            if (_places[_currentPlayer] == 10) return Category.Sports;
+            if (CurrentPosition() == 0) return Category.Pop;
+            if (CurrentPosition() == 4) return Category.Pop;
+            if (CurrentPosition() == 8) return Category.Pop;
+            if (CurrentPosition() == 1) return Category.Science;
+            if (CurrentPosition() == 5) return Category.Science;
+            if (CurrentPosition() == 9) return Category.Science;
+            if (CurrentPosition() == 2) return Category.Sports;
+            if (CurrentPosition() == 6) return Category.Sports;
+            if (CurrentPosition() == 10) return Category.Sports;
             return Category.Rock;
+        }
+
+        private int CurrentPosition()
+        {
+            return _places[_currentPlayer];
         }
 
         public bool WasCorrectlyAnswered()
