@@ -16,9 +16,8 @@ namespace Trivia
             categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
         private readonly Dictionary<Category, Queue<string>> questionsByCategory =
             new Dictionary<Category, Queue<string>>();
-        private readonly List<Player> players = new List<Player>();
-        private Player currentPlayer = null;
-        private int currentPlayerIndex = 0;
+
+        private readonly PlayerList playerList = new PlayerList();
 
         public Game(TextWriter stdOutput)
         {
@@ -51,16 +50,15 @@ namespace Trivia
         
         public void Add(string playerName)
         {
-            players.Add(new Player(playerName));
+            playerList.Add(new Player(playerName));
 
             Print(playerName + " was added");
-            Print("They are player number " + players.Count);
-            currentPlayer = players[currentPlayerIndex];
+            Print("They are player number " + playerList.Count);
         }
 
         public void Roll(int roll)
         {
-            
+            Player currentPlayer = playerList.CurrentPlayer;
             Print(currentPlayer + " is the current player");
             Print("They have rolled a " + roll);
 
@@ -103,36 +101,34 @@ namespace Trivia
         {
             stdOutput.WriteLine(message);
         }
-        private Player NextPlayer()
-        {
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
-            return players[currentPlayerIndex];
-        }
+        
         public bool WasCorrectlyAnswered()
         {
+            Player currentPlayer = playerList.CurrentPlayer;
             if (currentPlayer.IsInPenaltyBox())
             {
-                currentPlayer = NextPlayer();
+                playerList.NextPlayer();
                 return true;
             }
 
             Print("Answer was correct!!!!");
             currentPlayer.Reward(1);
+            
             Print(currentPlayer + " now has " + currentPlayer.GoldCoins + " Gold Coins.");
 
             var doesGameContinues = !currentPlayer.HasWon();
-            currentPlayer = NextPlayer();
+            playerList.NextPlayer();
 
             return doesGameContinues;
         }
 
         public bool WrongAnswer()
         {
+            Player currentPlayer = playerList.CurrentPlayer;
             Print("Question was incorrectly answered");
             Print(currentPlayer + " was sent to the penalty box");
             currentPlayer.EntersPenaltyBox();
-
-            currentPlayer = NextPlayer();
+            playerList.NextPlayer();
             return true;
         }
         

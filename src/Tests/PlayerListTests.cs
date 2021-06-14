@@ -33,7 +33,7 @@ namespace Tests
         }
 
         [Test]
-        public void Should_Select_First_Player_When_Moved_Tp_Next_After_Last_Round()
+        public void Should_Select_First_Player_When_Moved_To_Next_After_Last_Round()
         {
             PlayerList players = new PlayerList();
             players.Add(new Player("J B Rains"));
