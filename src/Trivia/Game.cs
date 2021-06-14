@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Xml.Schema;
 
 namespace Trivia
 {
     public class Game
     {
         private const int NUMBER_OF_CELLS = 12;
+        private readonly Category[] CATEGORIES = new[] {Category.Pop, Category.Science, Category.Sports, Category.Rock};
+
+        private readonly Dictionary<int, Category>
+            categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
+
+        private readonly Dictionary<Category, Queue<string>> questionsByCategory =
+            new Dictionary<Category, Queue<string>>();
+
+
         private readonly TextWriter stdOutput;
         private readonly List<string> _players = new();
 
@@ -16,12 +26,7 @@ namespace Trivia
         private readonly int[] _purses = new int[6];
 
         private readonly bool[] _inPenaltyBox = new bool[6];
-
-        private readonly Queue<string> _popQuestions = new();
-        private readonly Queue<string> _scienceQuestions = new();
-        private readonly Queue<string> _sportsQuestions = new();
-        private readonly Queue<string> _rockQuestions = new();
-
+        
         private int _currentPlayer;
         private bool _isGettingOutOfPenaltyBox;
 
@@ -29,12 +34,24 @@ namespace Trivia
         public Game(TextWriter stdOutput)
         {
             this.stdOutput = stdOutput;
+
+            foreach (var category in CATEGORIES)
+            {
+                questionsByCategory.Add(category,new Queue<string>());
+            }
+
+
             for (var i = 0; i < 50; i++)
             {
-                _popQuestions.Enqueue("Pop Question " + i);
-                _scienceQuestions.Enqueue(("Science Question " + i));
-                _sportsQuestions.Enqueue(("Sports Question " + i));
-                _rockQuestions.Enqueue(CreateRockQuestion(i));
+                foreach (var category in CATEGORIES)
+                {
+                    questionsByCategory[category].Enqueue(category.ToString() + " Question " + i);
+                }
+            }
+
+            for (int i = 0; i < NUMBER_OF_CELLS; i++)
+            {
+                categoriesByPosition.Add(i, CATEGORIES[i % CATEGORIES.Length]);
             }
         }
         [Obsolete]
@@ -120,36 +137,12 @@ namespace Trivia
 
         private void AskQuestion()
         {
-            if (CurrentCategory().Equals(Category.Pop))
-            {
-                Print(_popQuestions.Dequeue());
-            }
-            if (CurrentCategory().Equals(Category.Science))
-            {
-                Print(_scienceQuestions.Dequeue());
-            }
-            if (CurrentCategory().Equals(Category.Sports))
-            {
-                Print(_sportsQuestions.Dequeue());
-            }
-            if (CurrentCategory().Equals(Category.Rock))
-            {
-                Print(_rockQuestions.Dequeue());
-            }
+            Print(questionsByCategory[CurrentCategory()].Dequeue());
         }
 
         private Category CurrentCategory()
         {
-            if (CurrentPosition() == 0) return Category.Pop;
-            if (CurrentPosition() == 4) return Category.Pop;
-            if (CurrentPosition() == 8) return Category.Pop;
-            if (CurrentPosition() == 1) return Category.Science;
-            if (CurrentPosition() == 5) return Category.Science;
-            if (CurrentPosition() == 9) return Category.Science;
-            if (CurrentPosition() == 2) return Category.Sports;
-            if (CurrentPosition() == 6) return Category.Sports;
-            if (CurrentPosition() == 10) return Category.Sports;
-            return Category.Rock;
+            return categoriesByPosition[CurrentPosition()];
         }
 
         private int CurrentPosition()
