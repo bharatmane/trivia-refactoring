@@ -110,11 +110,7 @@ namespace Trivia
 
         private void Move(int roll)
         {
-            _places[_currentPlayer] = _places[_currentPlayer] + roll;
-            if (_places[_currentPlayer] >= NUMBER_OF_CELLS)
-            {
-                _places[_currentPlayer] = _places[_currentPlayer] - NUMBER_OF_CELLS;
-            }
+            _places[_currentPlayer] = (CurrentPosition() + roll) % NUMBER_OF_CELLS;
         }
 
         private void Print(string message)
