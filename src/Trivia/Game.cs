@@ -11,26 +11,31 @@ namespace Trivia
     {
         private readonly TextWriter stdOutput;
         private const int NUMBER_OF_CELLS = 12;
-        private readonly Category[] CATEGORIES = new[] { Category.Pop, Category.Science, Category.Sports, Category.Rock };
+        private List<Category> categories = new() { Category.Pop, Category.Science, Category.Sports, Category.Rock };
+        
         private readonly Dictionary<int, Category>
             categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
+        
         private readonly Dictionary<Category, Queue<string>> questionsByCategory =
             new Dictionary<Category, Queue<string>>();
 
+        private readonly Board board;
         private readonly PlayerList playerList = new PlayerList();
 
         public Game(TextWriter stdOutput)
         {
             this.stdOutput = stdOutput;
 
-            foreach (var category in CATEGORIES)
+            board = new Board(NUMBER_OF_CELLS, categories);
+
+            foreach (var category in categories)
             {
                 questionsByCategory.Add(category, new Queue<string>());
             }
 
             for (var i = 0; i < 50; i++)
             {
-                foreach (var category in CATEGORIES)
+                foreach (var category in categories)
                 {
                     questionsByCategory[category].Enqueue(category.ToString() + " Question " + i);
                 }
@@ -38,7 +43,7 @@ namespace Trivia
 
             for (int i = 0; i < NUMBER_OF_CELLS; i++)
             {
-                categoriesByPosition.Add(i, CATEGORIES[i % CATEGORIES.Length]);
+                categoriesByPosition.Add(i, categories[i % categories.Count]);
             }
         }
         [Obsolete]
@@ -76,11 +81,13 @@ namespace Trivia
                 }
             }
 
-            currentPlayer.MoveTo(NewPosition(currentPlayer.Position, roll));
+            int newPosition = board.NewPosition(currentPlayer.Position, roll);
 
-            Category currentCategory = CategoryOf(currentPlayer.Position);
+            currentPlayer.MoveTo(newPosition);
 
-            Print(currentPlayer + "'s new location is " + currentPlayer.Position);
+            Category currentCategory = board.CategoryOf(newPosition);
+
+            Print(currentPlayer + "'s new location is " + newPosition);
             Print("The category is " + currentCategory);
 
             Print( NextQuestionAbout(currentCategory));
