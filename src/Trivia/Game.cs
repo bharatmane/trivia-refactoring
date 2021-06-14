@@ -200,11 +200,7 @@ namespace Trivia
 
         private void NextPlayer()
         {
-            _currentPlayer++;
-            if (_currentPlayer == _players.Count)
-            {
-                _currentPlayer = 0;
-            }
+            _currentPlayer = (_currentPlayer + 1) % _players.Count;
         }
 
         public bool WrongAnswer()
