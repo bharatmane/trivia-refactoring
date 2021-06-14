@@ -16,8 +16,6 @@ namespace Tests
     {
         private bool _notAWinner;
 
-        
-
         [Test]
         public void TestGame()
         {
@@ -25,9 +23,7 @@ namespace Tests
             Console.SetOut(new StringWriter(capturedOutput));
             int startingGameId = 345;
 
-            string actualOutput = RunAGame(startingGameId, capturedOutput);
-
-            Approvals.Verify(actualOutput);
+            Approvals.Verify(RunAGame(startingGameId, capturedOutput));
         }
 
         private string RunAGame(int startingGameId, StringBuilder capturedOutput)
@@ -61,9 +57,8 @@ namespace Tests
         public void TestSeveralGames()
         {
             int howManyGames = 2;
-            Dictionary<int, string> gamesOutput  = RunSeveralGames(howManyGames);
 
-            Approvals.VerifyAll(gamesOutput);
+            Approvals.VerifyAll(RunSeveralGames(howManyGames));
         }
 
         private Dictionary<int, string> RunSeveralGames(int howManyGames)
@@ -76,11 +71,7 @@ namespace Tests
 
                 int startingGameId = 456 + i * 17;
 
-                string gameOutput;
-
-                gameOutput = RunAGame(startingGameId, capturedOutput);
-
-                gamesOutput.Add(i, gameOutput);
+                gamesOutput.Add(i, RunAGame(startingGameId, capturedOutput));
             }
 
             return gamesOutput;
