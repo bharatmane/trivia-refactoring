@@ -17,6 +17,10 @@ namespace Trivia
             this.name = name;
         }
 
+        public string Name
+        {
+            get { return name; }
+        }
         public int Position
         {
             get { return position; }
