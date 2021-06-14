@@ -28,7 +28,7 @@ namespace Trivia
         private readonly bool[] _inPenaltyBox = new bool[6];
 
         private int _currentPlayer;
-        private bool _isGettingOutOfPenaltyBox;
+        
 
 
         public Game(TextWriter stdOutput)
@@ -60,16 +60,7 @@ namespace Trivia
 
         }
 
-        public string CreateRockQuestion(int index)
-        {
-            return "Rock Question " + index;
-        }
-
-        public bool IsPlayable()
-        {
-            return (HowManyPlayers() >= 2);
-        }
-
+        
         public bool Add(string playerName)
         {
             _players.Add(playerName);
