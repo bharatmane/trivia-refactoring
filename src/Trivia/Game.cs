@@ -13,10 +13,10 @@ namespace Trivia
 
         private readonly bool[] _inPenaltyBox = new bool[6];
 
-        private readonly LinkedList<string> _popQuestions = new LinkedList<string>();
-        private readonly LinkedList<string> _scienceQuestions = new LinkedList<string>();
-        private readonly LinkedList<string> _sportsQuestions = new LinkedList<string>();
-        private readonly LinkedList<string> _rockQuestions = new LinkedList<string>();
+        private readonly LinkedList<string> _popQuestions = new();
+        private readonly LinkedList<string> _scienceQuestions = new();
+        private readonly LinkedList<string> _sportsQuestions = new();
+        private readonly LinkedList<string> _rockQuestions = new();
 
         private int _currentPlayer;
         private bool _isGettingOutOfPenaltyBox;
