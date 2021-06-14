@@ -106,7 +106,7 @@ namespace Trivia
             Print(playerName + "'s new location is " + currentPosition);
             Print("The category is " + currentCategory);
 
-            AskQuestion(currentCategory);
+            Print( GetQuestion(currentCategory));
         }
 
         private void Move(int currentPlayer, int roll)
@@ -119,9 +119,9 @@ namespace Trivia
             stdOutput.WriteLine(message);
         }
 
-        private void AskQuestion(Category currentCategory)
+        private string GetQuestion(Category currentCategory)
         {
-            Print(questionsByCategory[currentCategory].Dequeue());
+            return questionsByCategory[currentCategory].Dequeue();
         }
 
         private Category CurrentCategory(int currentPlayer)
