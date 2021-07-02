@@ -13,3 +13,4 @@ Exercise based on the [Trivia](https://github.com/jbrains/trivia) Legacy Code Re
 
 ## Refactor `Game`'s refer the [commits](https://github.com/bharatmane/trivia-refactoring/commits/master) for detaied refactoring
 	
+ 
