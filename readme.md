@@ -1,4 +1,8 @@
- 
+<h1 align="center">
+  <br />
+    Refactoring Trivia
+  <hr />
+   
 [![Sonar](https://github.com/sandeshkota/DesignPatterns/actions/workflows/sonar.yml/badge.svg)](https://github.com/bharatmane/trivia-refactoring/actions/workflows/build.yml)
   
  [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=bharatmane_trivia-refactoring&metric=ncloc)](https://sonarcloud.io/dashboard?id=bharatmane_trivia-refactoring)
@@ -12,9 +16,7 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bharatmane_trivia-refactoring&metric=code_smells)](https://sonarcloud.io/dashboard?id=bharatmane_trivia-refactoring)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bharatmane_trivia-refactoring&metric=bugs)](https://sonarcloud.io/dashboard?id=bharatmane_trivia-refactoring)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bharatmane_trivia-refactoring&metric=alert_status)](https://sonarcloud.io/dashboard?id=bharatmane_trivia-refactoring)
-
-
-# Refactoring Trivia
+</h1>
 
 Exercise based on the [Trivia](https://github.com/jbrains/trivia) Legacy Code Retreat code.
 
