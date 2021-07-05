@@ -31,7 +31,7 @@ namespace Trivia
             
             
         }
-        [Obsolete]
+        [Obsolete("Replaced by the constructor to inject related dependencies")]
         public Game() : this(Console.Out, new Board(NUMBER_OF_CELLS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
             new QuestionDeck(NB_QUESTIONS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
             new PlayerList())

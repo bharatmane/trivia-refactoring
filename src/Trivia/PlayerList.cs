@@ -8,18 +8,18 @@ namespace Trivia
 {
     public class PlayerList
     {
-        private readonly List<Player> players;
-        private int currentPlayerIndex = 0;
+        private readonly List<Player> _players;
+        private int _currentPlayerIndex = 0;
 
-        [Obsolete("Replaced by the construction to inject player names")]
+        [Obsolete("Replaced by the constructor to inject player names")]
         public PlayerList()
         {
-            players = new List<Player>();
+            _players = new List<Player>();
         }
 
         public PlayerList(List<String> names)
         {
-            players = new List<Player>();
+            _players = new List<Player>();
             foreach (var name in names)
             {
                 this.Add(new Player(name));
@@ -28,23 +28,17 @@ namespace Trivia
 
         public void Add(Player player)
         {
-            players.Add(player);
+            _players.Add(player);
         }
 
-        public Player CurrentPlayer
-        {
-            get { return players[currentPlayerIndex]; }
-        }
+        public Player CurrentPlayer => _players[_currentPlayerIndex];
 
-        public int Count
-        {
-            get { return players.Count;}
-        }
+        public int Count => _players.Count;
 
         public Player NextPlayer()
         {
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
-            return players[currentPlayerIndex];
+            _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
+            return _players[_currentPlayerIndex];
             
         }
     }
