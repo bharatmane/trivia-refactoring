@@ -32,7 +32,7 @@ namespace Trivia
         }
 
         public Player CurrentPlayer => _players[_currentPlayerIndex];
-
+        public List<Player> Players => _players;
         public int Count => _players.Count;
 
         public Player NextPlayer()

@@ -22,14 +22,8 @@ namespace Trivia
 
             this.board = board;
             this.deck = deck;
-            this.playerList = new PlayerList();
-            for (int i = 0; i < players.Count; i++) 
-            {
-                this.Add(players.CurrentPlayer.Name);
-                players.NextPlayer();
-            }
-            
-            
+            this.playerList = players;
+            PrintPlayerInformation();
         }
         [Obsolete("Replaced by the constructor to inject related dependencies")]
         public Game() : this(Console.Out, new Board(NUMBER_OF_CELLS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
@@ -40,12 +34,13 @@ namespace Trivia
         }
 
         
-        public void Add(string playerName)
+        private void PrintPlayerInformation()
         {
-            playerList.Add(new Player(playerName));
-
-            Print(playerName + " was added");
-            Print("They are player number " + playerList.Count);
+            foreach (var player in playerList.Players)
+            {
+                Print(player.Name + " was added");
+            }
+            Print("Total players are : " + playerList.Count);
         }
 
         public void Roll(int roll)

@@ -8,6 +8,7 @@ namespace Trivia
         private static bool _notAWinner;
         private const int NUMBER_OF_CELLS = 12;
         private static readonly int NB_QUESTIONS = 50;
+
         public static void Main(string[] args)
         {
             List<Category> categories = new() {Category.Pop, Category.Science, Category.Sports, Category.Rock};
