@@ -27,7 +27,7 @@ namespace Trivia
         {
             this.stdOutput = stdOutput;
 
-            this.board = board;new Board(NUMBER_OF_CELLS, categories);
+            this.board = board;
             this.deck = deck;
             this.playerList = new PlayerList();
             for (int i = 0; i < players.Count; i++) 
