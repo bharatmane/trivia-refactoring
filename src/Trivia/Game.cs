@@ -12,14 +12,7 @@ namespace Trivia
         private readonly TextWriter stdOutput;
         private const int NUMBER_OF_CELLS = 12;
         private static readonly int NB_QUESTIONS = 50;
-        private readonly List<Category> categories = new() { Category.Pop, Category.Science, Category.Sports, Category.Rock };
         
-        private readonly Dictionary<int, Category>
-            categoriesByPosition = new Dictionary<int, Category>(NUMBER_OF_CELLS);
-        
-        private readonly Dictionary<Category, Queue<string>> questionsByCategory =
-            new Dictionary<Category, Queue<string>>();
-
         private readonly Board board;
         private readonly PlayerList playerList;
         private readonly  QuestionDeck deck;
