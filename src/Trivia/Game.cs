@@ -9,24 +9,24 @@ namespace Trivia
 {
     public class Game
     {
-        private readonly TextWriter stdOutput;
-        private const int NUMBER_OF_CELLS = 12;
+        private readonly TextWriter _stdOutput;
+        private const int NumberOfCells = 12;
         private static readonly int NB_QUESTIONS = 50;
         
-        private readonly Board board;
-        private readonly PlayerList playerList;
-        private readonly  QuestionDeck deck;
+        private readonly Board _board;
+        private readonly PlayerList _playerList;
+        private readonly  QuestionDeck _deck;
         public Game(TextWriter stdOutput, Board board, QuestionDeck deck, PlayerList players)
         {
-            this.stdOutput = stdOutput;
+            this._stdOutput = stdOutput;
 
-            this.board = board;
-            this.deck = deck;
-            this.playerList = players;
+            this._board = board;
+            this._deck = deck;
+            this._playerList = players;
             PrintPlayerInformation();
         }
         [Obsolete("Replaced by the constructor to inject related dependencies")]
-        public Game() : this(Console.Out, new Board(NUMBER_OF_CELLS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
+        public Game() : this(Console.Out, new Board(NumberOfCells, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
             new QuestionDeck(NB_QUESTIONS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
             new PlayerList())
         {
@@ -36,16 +36,16 @@ namespace Trivia
         
         private void PrintPlayerInformation()
         {
-            foreach (var player in playerList.Players)
+            foreach (var player in _playerList.Players)
             {
                 Print(player.Name + " was added");
             }
-            Print("Total players are : " + playerList.Count);
+            Print("Total players are : " + _playerList.Count);
         }
 
         public void Roll(int roll)
         {
-            Player currentPlayer = playerList.CurrentPlayer;
+            Player currentPlayer = _playerList.CurrentPlayer;
             Print(currentPlayer + " is the current player");
             Print("They have rolled a " + roll);
 
@@ -63,16 +63,16 @@ namespace Trivia
                 }
             }
 
-            int newPosition = board.NewPosition(currentPlayer.Position, roll);
+            int newPosition = _board.NewPosition(currentPlayer.Position, roll);
 
             currentPlayer.MoveTo(newPosition);
 
-            Category currentCategory = board.CategoryOf(newPosition);
+            Category currentCategory = _board.CategoryOf(newPosition);
 
             Print(currentPlayer + "'s new location is " + newPosition);
             Print("The category is " + currentCategory);
 
-            Print( deck.NextQuestionAbout(currentCategory));
+            Print( _deck.NextQuestionAbout(currentCategory));
         }
 
         private static bool ShouldReleaseFromPenaltyBox(int roll)
@@ -82,16 +82,16 @@ namespace Trivia
 
         private void Print(string message)
         {
-            stdOutput.WriteLine(message);
+            _stdOutput.WriteLine(message);
         }
         
         public bool WasCorrectlyAnswered()
         {
-            Player currentPlayer = playerList.CurrentPlayer;
+            Player currentPlayer = _playerList.CurrentPlayer;
 
             if (currentPlayer.IsInPenaltyBox())
             {
-                playerList.NextPlayer();
+                _playerList.NextPlayer();
                 return true;
             }
 
@@ -101,18 +101,18 @@ namespace Trivia
             Print(currentPlayer + " now has " + currentPlayer.GoldCoins + " Gold Coins.");
 
             var doesGameContinues = !currentPlayer.HasWon();
-            playerList.NextPlayer();
+            _playerList.NextPlayer();
 
             return doesGameContinues;
         }
 
         public bool WrongAnswer()
         {
-            Player currentPlayer = playerList.CurrentPlayer;
+            Player currentPlayer = _playerList.CurrentPlayer;
             Print("Question was incorrectly answered");
             Print(currentPlayer + " was sent to the penalty box");
             currentPlayer.EntersPenaltyBox();
-            playerList.NextPlayer();
+            _playerList.NextPlayer();
             return true;
         }
         
