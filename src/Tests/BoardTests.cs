@@ -11,9 +11,9 @@ namespace Tests
 {
     class BoardTests
     {
-        private List<Category> EmptyList()
+        private static List<Category> EmptyList()
         {
-            return new List<Category>();
+            return new();
         }
         [Test]
         public void Should_Move_Forward_When_Moved()

@@ -11,7 +11,7 @@ namespace Trivia
         private readonly List<Player> players;
         private int currentPlayerIndex = 0;
 
-        [Obsolete]
+        [Obsolete("Replaced by the construction to inject player names")]
         public PlayerList()
         {
             players = new List<Player>();

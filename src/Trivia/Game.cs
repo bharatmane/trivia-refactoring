@@ -63,7 +63,7 @@ namespace Trivia
 
             if (currentPlayer.IsInPenaltyBox())
             {
-                if (shouldReleaseFromPenaltyBox(roll))
+                if (ShouldReleaseFromPenaltyBox(roll))
                 {
                     currentPlayer.ExitsPenaltyBox();
                     Print(currentPlayer + " is getting out of the penalty box");
@@ -87,23 +87,11 @@ namespace Trivia
             Print( deck.NextQuestionAbout(currentCategory));
         }
 
-        private bool shouldReleaseFromPenaltyBox(int roll)
+        private static bool ShouldReleaseFromPenaltyBox(int roll)
         {
             return (roll % 2 != 0);
         }
 
-        private int NewPosition(int currentPosition, int roll)
-        {
-            return (currentPosition + roll) % NUMBER_OF_CELLS;
-        }
-        private string NextQuestionAbout(Category category)
-        {
-            return questionsByCategory[category].Dequeue();
-        }
-        private Category CategoryOf(int position)
-        {
-            return categoriesByPosition[position];
-        }
         private void Print(string message)
         {
             stdOutput.WriteLine(message);

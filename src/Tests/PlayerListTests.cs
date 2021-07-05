@@ -13,32 +13,21 @@ namespace Tests
         [Test]
         public void Should_Select_First_Player_When_In_First_Round()
         {
-            PlayerList players = new PlayerList();
-            players.Add(new Player("J B Rains"));
-            players.Add(new Player("Emily B"));
-            players.Add(new Player("Michael Feather"));
-
+            PlayerList players = new PlayerList(new List<string>(){ "J B Rains", "Emily B", "Michael Feather" });
             Assert.That(players.CurrentPlayer.Name, Is.EqualTo("J B Rains"));
         }
 
         [Test]
         public void Should_Select_Next_Player_When_In_Next_Round()
         {
-            PlayerList players = new PlayerList();
-            players.Add(new Player("J B Rains"));
-            players.Add(new Player("Emily B"));
-            players.Add(new Player("Michael Feather"));
-
+            PlayerList players = new PlayerList(new List<string>() { "J B Rains", "Emily B", "Michael Feather" });
             Assert.That(players.NextPlayer().Name, Is.EqualTo("Emily B"));
         }
 
         [Test]
         public void Should_Select_First_Player_When_Moved_To_Next_After_Last_Round()
         {
-            PlayerList players = new PlayerList();
-            players.Add(new Player("J B Rains"));
-            players.Add(new Player("Emily B"));
-            players.Add(new Player("Michael Feather"));
+            PlayerList players = new PlayerList(new List<string>() { "J B Rains", "Emily B", "Michael Feather" });
             players.NextPlayer();
             players.NextPlayer();
             Assert.That(players.NextPlayer().Name, Is.EqualTo("J B Rains"));
