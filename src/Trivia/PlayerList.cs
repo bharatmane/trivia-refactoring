@@ -11,12 +11,6 @@ namespace Trivia
         private readonly List<Player> _players;
         private int _currentPlayerIndex = 0;
 
-        [Obsolete("Replaced by the constructor to inject player names")]
-        public PlayerList()
-        {
-            _players = new List<Player>();
-        }
-
         public PlayerList(List<String> names)
         {
             _players = new List<Player>();

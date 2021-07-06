@@ -10,9 +10,6 @@ namespace Trivia
     public class Game
     {
         private readonly TextWriter _stdOutput;
-        private const int NumberOfCells = 12;
-        private static readonly int NB_QUESTIONS = 50;
-        
         private readonly Board _board;
         private readonly PlayerList _playerList;
         private readonly  QuestionDeck _deck;
@@ -25,14 +22,6 @@ namespace Trivia
             this._playerList = players;
             PrintPlayerInformation();
         }
-        [Obsolete("Replaced by the constructor to inject related dependencies")]
-        public Game() : this(Console.Out, new Board(NumberOfCells, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
-            new QuestionDeck(NB_QUESTIONS, new() { Category.Pop, Category.Science, Category.Sports, Category.Rock }),
-            new PlayerList())
-        {
-         
-        }
-
         
         private void PrintPlayerInformation()
         {
