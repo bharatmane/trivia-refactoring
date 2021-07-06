@@ -13,6 +13,8 @@ namespace Trivia
         private readonly Board _board;
         private readonly PlayerList _playerList;
         private readonly  QuestionDeck _deck;
+        private readonly  QuestionDeck _deckDummy;
+        
         public Game(TextWriter stdOutput, Board board, QuestionDeck deck, PlayerList players)
         {
             this._stdOutput = stdOutput;
