@@ -1,0 +1,678 @@
+Act as a senior executive-presentation strategist, enterprise UX futurist, visual storyteller and expert HTML presentation developer.
+
+Create a polished, thought-provoking, interactive HTML presentation based on the following brief.
+
+Do not simply provide a presentation outline. Produce the complete working HTML/CSS/JavaScript presentation.
+
+# Presentation objective
+
+Create a 15–20-minute executive presentation explaining how enterprise applications may evolve beyond menus, navigation-heavy workflows and generic chatbots.
+
+The central question is:
+
+**Do users still need to navigate menus—or should AI have already analysed the work, prepared the insight, assembled the evidence and proposed the possible actions, waiting only for the user’s go/no-go decision?**
+
+This is not a presentation about adding a chatbot to an existing application.
+
+It is about redesigning the application around:
+
+* What requires the user’s attention now.
+* Why it requires attention.
+* What evidence supports the conclusion.
+* What action is recommended.
+* What the system can execute after human authorization.
+* How the action and its outcome remain auditable.
+
+The central thesis is:
+
+> **The future enterprise UI is not a chatbot. It is a prepared decision environment.**
+
+The recurring control principle is:
+
+> **AI prepares. Humans authorize. Systems execute. Everything is auditable.**
+
+# Audience
+
+The audience consists of Executive Directors, senior technology leaders, product leaders and business stakeholders in a large financial-services enterprise.
+
+The presentation should be intellectually provocative, credible and grounded in a realistic proof of concept.
+
+It must not feel like:
+
+* A generic AI presentation.
+* An AI history lesson.
+* A product sales pitch.
+* A collection of AI buzzwords.
+* A chatbot demonstration.
+* A detailed technical architecture review.
+* A feature-by-feature product walkthrough.
+
+The audience should leave reconsidering what the job of an enterprise user interface should be when the system already understands the user, role, operational context, policy, evidence and permitted actions.
+
+# Working title
+
+Use this title:
+
+## What If the Work Is Already Prepared?
+
+Subtitle:
+
+### Beyond menus, navigation and chatbots
+
+Alternative phrase that may appear prominently in the opening:
+
+> **Do we need another menu—or do we need a decision that is ready?**
+
+# Proof-of-concept context
+
+The proof of concept is a separate future-state enterprise application for collateral and margin operations. It is not a production capability.
+
+All screenshots must carry or preserve this qualification:
+
+**Future-state concept · Synthetic data · Illustrative experience · Not a production capability**
+
+The application supports several personas:
+
+* MORS — Margin Oversight and Risk users.
+* Collateral Operations.
+* Risk.
+* Operations Senior.
+* AI assistant, called IRIS.
+
+The application is predominantly organised around:
+
+**Call → Account → Evidence → Conversation → Decision → Action → Outcome**
+
+Different personas use the same underlying account and margin-call data, but each persona has a different job, risk perspective and required action.
+
+The future-state application should not merely give every persona a different menu. It should give each persona a different prepared decision surface.
+
+# Business workflow
+
+## Collateral Operations
+
+When Collateral Operations users begin the day, they review operational exceptions.
+
+Margin calls are generated. If an account has not been onboarded or does not have the required margin account or margin group, the user must resolve the onboarding problem before normal processing can continue.
+
+Throughout the day, Collateral Operations may:
+
+* Review call-generation exceptions.
+* Verify that calls have been acknowledged.
+* Communicate with internal teams and counterparties.
+* Coordinate through email, Dynamics or Teams.
+* Issue cash or security settlement instructions.
+* Monitor whether instructions are accepted and settled.
+* Investigate downstream source-system failures.
+* Resolve failed IA updates.
+* Track items approaching escalation or SLA thresholds.
+* Intervene only where the workflow is not progressing normally.
+
+The future-state experience should make healthy work quiet and bring only genuine interventions to the foreground.
+
+## MORS
+
+MORS users review generated calls and apply oversight controls.
+
+Their activities include:
+
+* Reviewing VM and IM calls above configured thresholds.
+* Validating high-value calls.
+* Investigating unusual calls even when they are below the normal threshold.
+* Reviewing netting effects.
+* Understanding the main products, trades and positions driving a call.
+* Checking whether required commentary is present.
+* Identifying new or existing trades where IA is required but has not been applied.
+* Engaging Risk to determine or approve the appropriate IA.
+* Using an AI-predicted IA value as a recommendation—not an automatic final decision.
+* Applying an approved IA to the correct trade source system.
+* Monitoring whether each downstream update succeeds.
+
+AI should prepare the analysis and suggested value, but the appropriate user must authorize the decision.
+
+## Risk
+
+Risk users concentrate on:
+
+* High-value margin calls.
+* Specific watched counterparties or accounts.
+* Material day-on-day movements.
+* Understanding what is driving a call.
+* Identifying whether the movement is attributable to a product, trade, position or trader.
+* Reviewing MORS commentary.
+* Requesting additional evidence or explanation.
+* Escalating concerns.
+* Confirming that risk oversight requirements have been satisfied.
+
+Risk should not begin with a generic dashboard or report. Risk should begin with the accounts and calls requiring judgment.
+
+# Screenshots
+
+I will attach three proof-of-concept screenshots.
+
+Treat them as the primary visual evidence in the presentation.
+
+They represent:
+
+1. **MORS Today’s Work**
+
+   * “Eight of 186 London calls need review.”
+   * 178 calls are progressing normally.
+   * BNP Paribas has a $735.0mm gross call.
+   * Net call is $39.44mm after netting.
+   * Maximum outgoing amount is $693.8mm.
+   * FID represents 72% of the account split.
+   * AI-prepared summary, call drivers, trade-level evidence, recommended next step and account conversation are visible.
+
+2. **Risk Today’s Work**
+
+   * “$707.57mm of high-value outgoing calls are prepared for review.”
+   * Calls are selected through a referral policy and watched-account lens.
+   * Risk sees gross call, net call, maximum outgoing, region/group, call driver, prepared summary, MORS commentary and evidence.
+   * The user can request evidence or mark the call reviewed.
+
+3. **Collateral Operations Today’s Work**
+
+   * “Seven items need intervention.”
+   * 109 items are progressing normally.
+   * One item involves an approved IA update rejected by a downstream source system because of an identifier mismatch.
+   * Four of five related updates succeeded.
+   * AI has identified the likely cause, assembled evidence and prepared a remediation.
+   * Another item concerns a counterparty that has not acknowledged a call and is approaching escalation.
+
+Do not place the full screenshots on slides at a size where the text becomes unreadable.
+
+Use intentional crops and zoomed callouts to focus attention on:
+
+* The “need attention” count versus “progressing normally.”
+* AI-prepared insight.
+* Evidence.
+* Recommended action.
+* Human approval.
+* Account-level conversation.
+
+The screenshots must feel like proof of the presentation’s argument—not decorative application screenshots.
+
+# Narrative structure
+
+Create approximately 13–14 main slides, plus an optional sources or appendix slide.
+
+## Slide 1 — What If the Work Is Already Prepared?
+
+Use a minimal opening slide.
+
+Main title:
+
+**What If the Work Is Already Prepared?**
+
+Subtitle:
+
+**Beyond menus, navigation and chatbots**
+
+Supporting question:
+
+> If AI has already analysed the situation, assembled the evidence and prepared the next action, what should remain for the user?
+
+Do not clutter this slide.
+
+## Slide 2 — Our most complex software is already moving from commands to intent
+
+Use the developer experience as the opening analogy.
+
+Visual idea:
+
+* On one side, suggest the complexity of Visual Studio, IntelliJ or VS Code: menus, commands, panels, extensions and shortcuts.
+* On the other side, show a simple intent such as:
+
+> “Find the cause, make the change, run the tests and show me the evidence.”
+
+The claim is not that developers have stopped using IDEs.
+
+The defensible message is:
+
+> The workbench remains, but the centre of interaction is shifting from locating commands to expressing intent.
+
+Speaker narrative:
+
+“Some of the most complex applications ever created are developer IDEs. They accumulated thousands of commands, panels and configuration options. Increasingly, however, the developer begins with an intention. The system explores the context, proposes changes, runs checks and returns the evidence. The complexity remains. What changes is the user’s relationship with it.”
+
+## Slide 3 — The complexity did not disappear. The user’s job changed.
+
+Contrast the old user responsibility with the future responsibility.
+
+Old model:
+
+* Find the correct system.
+* Navigate to the right function.
+* Assemble the data.
+* Apply filters.
+* Reconstruct the context.
+* Interpret the result.
+* Find the next action.
+* Execute it manually.
+
+Future model:
+
+* Review what requires judgment.
+* Inspect evidence.
+* Challenge or refine the recommendation.
+* Authorize or reject the action.
+* Monitor the outcome.
+
+Prominent line:
+
+> **The user moves from assembling the work to exercising judgment over prepared work.**
+
+## Slide 4 — The best AI is embedded in the journey
+
+Use Google Maps or navigation as a brief outside-industry analogy.
+
+The user states a destination. The application:
+
+* Understands intent.
+* Combines live signals.
+* Recommends a route.
+* Surfaces exceptions.
+* Recalculates when conditions change.
+* Allows the user to override.
+
+The user is not required to inspect every possible road.
+
+Connect the analogy to enterprise work:
+
+> A margin analyst should not have to inspect every call to discover the eight that matter.
+
+Avoid spending too much time on the analogy. Its purpose is to make embedded, proactive intelligence feel familiar.
+
+## Slide 5 — One event creates three different jobs
+
+Place one margin call or account at the centre.
+
+Example:
+
+**BNP Paribas · Gross margin call: $735.0mm**
+
+Show three persona perspectives around it:
+
+### MORS
+
+* Is it above the referral threshold?
+* What is driving it?
+* Is the commentary complete?
+* Has IA been correctly applied?
+
+### Risk
+
+* Is the account watched?
+* Which product, trade or trader is driving the movement?
+* Is the risk acceptable?
+* Is more evidence required?
+
+### Collateral Operations
+
+* Is the account operationally ready?
+* Has the call been acknowledged?
+* Have instructions been issued?
+* Is settlement progressing?
+
+Key line:
+
+> **Same event. Same underlying data. Three different decisions.**
+
+Explain that persona-aware design is not simply role-based navigation. It is role-specific preparation of the work.
+
+## Slide 6 — The morning should begin with what needs judgment
+
+Use a strong crop of the MORS screenshot.
+
+Feature:
+
+* 186 total London calls.
+* Eight need attention.
+* 178 are progressing normally.
+
+Use the question:
+
+> If 178 of 186 calls are healthy, why should the application make the user inspect all 186?
+
+Prominent message:
+
+> **Healthy work becomes quiet. Exceptions become explainable.**
+
+## Slide 7 — MORS validates a prepared investigation
+
+Use the BNP Paribas call from the MORS screen.
+
+Show the progression:
+
+* Threshold or control identifies the call.
+* AI prepares the call explanation.
+* Netting effects are calculated.
+* Product and trade drivers are ranked.
+* Evidence is attached.
+* The next step is recommended.
+* The user reviews and authorizes.
+
+Do not represent AI conclusions as unquestionable truth.
+
+Show that every recommendation has:
+
+* Source evidence.
+* Calculation timestamp.
+* Policy or control basis.
+* Confidence or qualification.
+* Human approval.
+
+Important phrase:
+
+> **The user is no longer discovering the issue. The user is validating a prepared investigation.**
+
+## Slide 8 — Risk sees exposure, drivers and evidence—not another report
+
+Use the Risk screenshot.
+
+Show:
+
+* High-value calls selected by policy.
+* Watched accounts included regardless of the normal threshold.
+* Gross call and net call.
+* Product, trade or trader-level drivers.
+* Required MORS commentary.
+* Evidence and source records.
+* “Request evidence” and “Mark reviewed.”
+
+Key line:
+
+> **Same call. Same data. A different decision.**
+
+## Slide 9 — Collateral Operations manages interventions, not healthy work
+
+Use the Collateral Operations screenshot.
+
+Highlight:
+
+* Seven items need intervention.
+* 109 are progressing normally.
+* One approved IA update failed in a downstream source system.
+* Four related updates succeeded.
+* The likely cause is an identifier mismatch.
+* The system recommends creating the missing cross-reference and replaying only the rejected update.
+* The four successful updates remain unchanged.
+
+Key line:
+
+> **AI does not merely describe the failure. It prepares a controlled remediation.**
+
+The human can:
+
+* Review the details.
+* Reject the recommendation.
+* Modify the recommendation.
+* Approve preparation.
+* Authorize execution.
+
+## Slide 10 — Conversation should belong to the account
+
+Introduce the Account Room concept.
+
+Today:
+
+* Evidence is in the application.
+* Conversation is in Teams.
+* Instructions are in email.
+* Decisions may be retained in individual memory.
+* The audit trail must be reconstructed later.
+
+Future:
+
+* MORS, Risk and Collateral Operations participate in one account- or call-specific conversation.
+* The AI assistant participates using the same account context.
+* AI answers only when grounded evidence is available.
+* AI cites the supporting records.
+* Decisions, approvals and execution outcomes remain attached to the account.
+* Teams can be integrated as another participation surface.
+
+Do not propose building a full replacement for Microsoft Teams.
+
+The application should provide a lightweight, record-centred Account Room and optionally bridge it with Teams.
+
+Prominent line:
+
+> **The account becomes the shared operational context.**
+
+## Slide 11 — Chat is an escape hatch, not the home page
+
+Make the distinction between proactive prepared work and conversational exploration.
+
+Hierarchy:
+
+1. Prepared work.
+2. Contextual follow-up questions.
+3. Ad hoc intent.
+4. Authorized execution.
+
+The landing page should not be an empty text box asking:
+
+“How can I help?”
+
+Instead, it should already know:
+
+* The user’s persona.
+* Their entitlements.
+* Their accounts.
+* Current calls and trades.
+* Configured thresholds.
+* Watched counterparties.
+* Operational exceptions.
+* Pending decisions.
+* Relevant market signals.
+
+Possible message:
+
+> **Do not ask the user to prompt the system for work the system should already understand.**
+
+The intent box remains available for unusual investigations, uncommon actions and contextual follow-up questions.
+
+## Slide 12 — News becomes useful only when connected to exposure
+
+Do not present a generic scrolling news feed.
+
+Show the difference:
+
+Generic news:
+
+* “Currency volatility increased.”
+* “A sector declined.”
+* “A central bank announcement was released.”
+
+Contextual operational signal:
+
+* “This currency move affects three watched accounts.”
+* “Five calls show movements associated with this market event.”
+* “Two counterparties have material exposure to the affected sector.”
+* “This event may explain 61% of today’s call movement.”
+
+Key line:
+
+> **The news is not the insight. The connection between the event, exposure and required decision is the insight.**
+
+## Slide 13 — AI prepares. Humans authorize. Systems execute.
+
+Create a simple control sequence:
+
+**Observe → Prepare → Recommend → Authorize → Execute → Monitor**
+
+Place the following trust foundations underneath:
+
+* Evidence.
+* Entitlements.
+* Policy.
+* Controls.
+* Audit trail.
+
+Possible autonomy levels:
+
+* Surface an exception.
+* Prepare an investigation.
+* Recommend an action.
+* Draft the action.
+* Execute after human approval.
+* Automatically execute only low-risk actions covered by approved policy.
+
+Emphasise that authorization must be explicit for consequential actions.
+
+Use the statement:
+
+> **The future is not unrestricted autonomy. It is controlled delegation.**
+
+## Slide 14 — The interface changes jobs
+
+Show a concise comparison.
+
+### Traditional enterprise UI
+
+* Helps users find functions.
+* Displays available data.
+* Requires users to reconstruct context.
+* Separates analysis, conversation and execution.
+* Measures engagement through screens and clicks.
+
+### Intent-driven enterprise UI
+
+* Identifies what requires attention.
+* Prepares context and evidence.
+* Recommends permitted actions.
+* Anchors collaboration to the account.
+* Measures success through faster, safer decisions.
+
+Close with these three questions:
+
+1. **If most work is progressing normally, why do we continue showing all of it?**
+2. **If the system knows the persona, account, policy and evidence, why must the user reconstruct the investigation?**
+3. **Are we designing more screens—or are we designing faster, safer decisions?**
+
+Final closing statement:
+
+> The future enterprise UI is not fewer capabilities. It is less effort spent finding them.
+>
+> When the system knows who I am, what matters now, what evidence supports it and what action is permitted—why should my day still begin with a menu?
+
+# Opening speaker script
+
+Include this in the speaker notes for the first few slides:
+
+“Let me begin with one of the most complex categories of software many of us use: the developer IDE—Visual Studio, IntelliJ or VS Code.
+
+These applications contain thousands of commands, panels, shortcuts and configuration options. But increasingly, I begin my work with a sentence:
+
+‘Find the cause, make the change, run the tests and show me the evidence.’
+
+The IDE has not disappeared. The complexity has not disappeared. What has changed is my relationship with it. I express the intent. The system prepares the work. I inspect the evidence and decide whether to accept it.
+
+If this is possible in software engineering—one of the most complex knowledge domains—why should a collateral analyst still begin the morning by navigating menus, opening reports, applying filters and inspecting 186 calls?
+
+Why can’t the system say:
+
+‘178 are progressing normally. Eight need your judgment. Here is why. Here is the evidence. Here is the recommended next action. Tell me go or no-go.’
+
+That is the future-state concept I want to explore.”
+
+# HTML implementation requirements
+
+Create a complete, working presentation as a self-contained HTML file where practical.
+
+Requirements:
+
+* 16:9 presentation format.
+* Responsive scaling while preserving the slide aspect ratio.
+* Executive-quality visual design.
+* Keyboard navigation using left and right arrow keys.
+* Spacebar support for advancing slides.
+* Visible but unobtrusive previous/next controls.
+* Slide number and progress indicator.
+* Full-screen presentation support.
+* A speaker-notes view or notes panel that can be toggled.
+* Print-friendly styling for PDF export.
+* Smooth but restrained transitions.
+* Accessible colour contrast.
+* No unnecessary animation.
+* No dependency on an internet connection where avoidable.
+* Use semantic HTML, clean CSS and readable JavaScript.
+* Ensure the presentation works by opening the HTML file directly in a browser.
+* If images cannot be embedded, reference them through a clearly named local `assets` folder.
+* Clearly explain the expected screenshot filenames or asset mapping.
+* Do not leave placeholder code, incomplete sections or TODO comments.
+
+# Visual direction
+
+Use a sophisticated enterprise visual style inspired by the proof-of-concept screens:
+
+* Deep navy.
+* White and light neutral backgrounds.
+* Controlled violet/indigo accents.
+* Limited amber for attention states.
+* Green only for healthy/progressing states.
+* Red only for genuine intervention or failure.
+
+Typography should be modern, executive and highly readable.
+
+Use:
+
+* Large takeaway headlines.
+* Minimal text per slide.
+* Strong contrast.
+* Thoughtful whitespace.
+* Cropped screenshot evidence.
+* Subtle data callouts.
+* A consistent footer for “Future-state concept.”
+* Visual continuity between the presentation and the proof of concept.
+
+Avoid:
+
+* Robot imagery.
+* Glowing AI brains.
+* Generic circuit-board visuals.
+* Excessive gradients.
+* Stock-photo businesspeople.
+* Dense paragraphs on slides.
+* Tiny screenshots.
+* Decorative dashboards.
+* Excessive cards, pills and UI elements.
+* Making every slide look like a product screen.
+* Repeating “From X to Y” on every slide.
+* Unsupported ROI claims.
+* Invented production results.
+
+# Sources and credibility
+
+Use external examples only where they strengthen the argument.
+
+Suggested primary sources:
+
+* GitHub Copilot agent mode documentation:
+  https://docs.github.com/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide
+
+* Google Maps navigation and proactive traffic alerts:
+  https://blog.google/products-and-platforms/products/maps/gemini-navigation-features-landmark-lens/
+
+* Microsoft Dynamics 365 and Teams record-centred collaboration:
+  https://learn.microsoft.com/en-us/dynamics365/teams-integration/teams-integration
+
+Verify claims before including them.
+
+Keep citations unobtrusive on the audience-facing slides and include complete sources in speaker notes or an appendix.
+
+Do not invent statistics, customer outcomes, adoption figures or financial benefits.
+
+# Final deliverables
+
+Provide:
+
+1. The complete presentation HTML.
+2. Any required CSS and JavaScript, preferably embedded in the HTML.
+3. Clear instructions for placing the three screenshots.
+4. Speaker notes for every slide.
+5. A short run guide explaining how to open, navigate, present full-screen and print to PDF.
+6. A concise list of any external sources used.
+
+Do not stop after creating an outline. Build and verify the complete presentation.
